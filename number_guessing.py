@@ -7,6 +7,11 @@ Rather, call this function from main.py and run that file.
 """
 
 
+import random
+import turtle
+from loopy_turtles import create_turtle, draw_square, draw_star
+
+
 def guess_number(low, high, num_attempts):
     """
     This function, named 'guess_number', generates a psudo-random integer in a given range, inclusive.
@@ -24,3 +29,35 @@ def guess_number(low, high, num_attempts):
     :param num_attempts: The number of attempts the user is given to guess the correct number.
     :returns: True if the user answers any attempt correctly, False otherwise.
     """
+    correct_number = random.randint(low, high)
+
+    print(f"Guess a number between {low} and {high}.")
+    print(f"You have {num_attempts} attempts.")
+
+    for attempt in range(num_attempts):
+        guess = input(f"Attempt {attempt + 1}: Enter your guess: ")
+
+        try:
+            guess = int(guess)
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if guess == correct_number:
+            print("Congratulations! You guessed the correct number.")
+            return True
+        elif guess < correct_number:
+            print("Too low!")
+        else:
+            print("Too high!")
+
+    print("Sorry, you've used all your attempts. The correct number was:", correct_number)
+    return False
+
+if __name__ == "__main__":
+    t = create_turtle("red", "yellow")  # create a turtle object
+    for x in range(-200, 0, 50):  # loop four times
+        draw_square(t, x, x, 100, "left", "#F5DEB3")  # draw a square
+
+    draw_star(t, 200, 200, 100, 144, "right", "red")  # draw a five-pointed star
+    turtle.done()
