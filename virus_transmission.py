@@ -21,5 +21,4 @@ def calculate_infections(starting_number_infections, reproduction_rate, num_days
 
     for i in range(num_days):
         current_infections *= reproduction_rate
-    
     return round(current_infections)
