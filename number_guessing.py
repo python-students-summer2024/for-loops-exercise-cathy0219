@@ -37,9 +37,9 @@ def guess_number(low, high, num_attempts):
     for attempt in range(num_attempts):
         guess = input(f"Attempt {attempt + 1}: Enter your guess: ")
 
-        try:
+        if guess.isdigit():
             guess = int(guess)
-        except ValueError:
+        else:
             print("Invalid input. Please enter a number.")
             continue
 
